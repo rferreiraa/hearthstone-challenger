@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.example.hearthstonechallenger.enums.Vocations;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +27,7 @@ public class Deck {
 	@OneToMany(mappedBy = "deck")
 	private List<Card> cards;
 	
-	private Vocations vocation;
+	@Column(name = "id_class")
+	private Integer idClass;
 	
 }

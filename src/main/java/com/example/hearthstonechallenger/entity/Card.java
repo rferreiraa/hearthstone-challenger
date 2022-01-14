@@ -5,9 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.example.hearthstonechallenger.enums.Natures;
-import com.example.hearthstonechallenger.enums.Vocations;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,8 +32,10 @@ public class Card {
 	@Column(name = "defense")
 	private Integer defense;
 	
-	private Vocations vocation;
+	@Column(name = "id_class")
+	private Integer idClass;
 	
-	private Natures nature;
+	@Column(name = "id_type")
+	private Integer idType;
 
 }
