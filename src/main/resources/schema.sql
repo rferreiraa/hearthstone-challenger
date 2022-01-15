@@ -1,6 +1,7 @@
 --CREATE SCHEMA HEARTHSTONE
 CREATE SCHEMA IF NOT EXISTS hearthstone; 
 
+DROP TABLE IF EXISTS hearthstone.deck_cards;
 DROP TABLE IF EXISTS hearthstone.decks;
 DROP TABLE IF EXISTS hearthstone.cards;
 DROP TABLE IF EXISTS hearthstone.card_types;

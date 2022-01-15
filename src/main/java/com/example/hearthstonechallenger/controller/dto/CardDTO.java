@@ -12,7 +12,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class CardDTO {
 
-	private Long id;
 	private Integer coust;
 	private String name;
 	private String description;
@@ -22,7 +21,6 @@ public class CardDTO {
 	private String nature;
 	
     public CardDTO(Card card) {
-        this.id = card.getId();
         this.coust = card.getCoust();
         this.name = card.getName();
         this.description = card.getDescription();
