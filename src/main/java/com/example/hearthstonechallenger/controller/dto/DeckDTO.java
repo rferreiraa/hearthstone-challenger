@@ -19,10 +19,10 @@ public class DeckDTO {
 	@Size(min = 1, max = 100, message = "Name must be between 1 and 100 characters")
 	private String name;
 	
-	
+	@Size(max=30, message="Decks can only have 30 cards")
 	private List<Card> cards;
 	
-	@Pattern(regexp = "MAGE|PALADIN|HUNTER|DRUID|ANY")
+	@Pattern(regexp = "MAGE|PALADIN|HUNTER|DRUID|ANY", message = "Must match to 'MAGE|PALADIN|HUNTER|DRUID|ANY'")
 	private String vocation;
 
 }

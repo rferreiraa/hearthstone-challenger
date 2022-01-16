@@ -22,4 +22,14 @@ public class ExceptionsResolver {
 		}
 		return ResponseEntity.unprocessableEntity().body(errorResponse);
 	}
+	
+	@ExceptionHandler(BusinessException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public ResponseEntity<ErrorResponse> handleBusinessException(BusinessException ex,
+			WebRequest request) {
+		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+				"An internal error occurred, please try again later.");
+
+		return ResponseEntity.unprocessableEntity().body(errorResponse);
+	}
 }

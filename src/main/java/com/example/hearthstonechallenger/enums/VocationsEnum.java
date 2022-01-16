@@ -27,4 +27,12 @@ public enum VocationsEnum {
 		}
 		return null;
 	}
+	
+	public static Integer getByName(String name) {
+		for (VocationsEnum v : VocationsEnum.values()) {
+			if(v.name.equals(name))
+				return v.getId();
+		}
+		return null;
+	}
 }
