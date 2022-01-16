@@ -39,7 +39,7 @@ public class DeckController extends ExceptionsResolver {
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<String> delete(@PathVariable(value = "id") long id) {
-		Optional<Deck> deck = deckRepository.findById(id);
+		Optional<Deck> deck = deckRepository.findById(id);    
 		if (deck.isPresent()) {
 			deckRepository.delete(deck.get());
 			return ResponseEntity.status(HttpStatus.OK).body("Deck deleted sucessfully");

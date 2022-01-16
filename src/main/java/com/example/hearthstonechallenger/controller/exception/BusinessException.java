@@ -1,7 +1,12 @@
 package com.example.hearthstonechallenger.controller.exception;
 
 public class BusinessException extends Exception {
-	  public BusinessException(String errorMessage) {
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public BusinessException(String errorMessage) {
 	        super(errorMessage);
 	    }
 }

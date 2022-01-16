@@ -25,4 +25,12 @@ public enum NaturesEnum {
 		return null;
 	}
 	
+	public static Integer getByName(String name) {
+		for (NaturesEnum v : NaturesEnum.values()) {
+			if(v.name.equals(name))
+				return v.getId();
+		}
+		return null;
+	}
+	
 }

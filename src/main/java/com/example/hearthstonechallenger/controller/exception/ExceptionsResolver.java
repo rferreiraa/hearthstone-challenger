@@ -1,5 +1,7 @@
 package com.example.hearthstonechallenger.controller.exception;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -29,6 +31,18 @@ public class ExceptionsResolver {
 			WebRequest request) {
 		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
 				"An internal error occurred, please try again later.");
+
+		return ResponseEntity.unprocessableEntity().body(errorResponse);
+	}
+	
+	
+	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+	public ResponseEntity<ErrorResponse> handleEntityNotFound(EntityNotFoundException ex,
+			WebRequest request) {
+		
+		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(),
+				ex.getMessage());
 
 		return ResponseEntity.unprocessableEntity().body(errorResponse);
 	}
