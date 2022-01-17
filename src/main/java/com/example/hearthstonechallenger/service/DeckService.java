@@ -17,6 +17,7 @@ import com.example.hearthstonechallenger.controller.exception.BusinessException;
 import com.example.hearthstonechallenger.controller.exception.GenericException;
 import com.example.hearthstonechallenger.entity.Card;
 import com.example.hearthstonechallenger.entity.Deck;
+import com.example.hearthstonechallenger.enums.NaturesEnum;
 import com.example.hearthstonechallenger.enums.VocationsEnum;
 import com.example.hearthstonechallenger.repository.CardRepository;
 import com.example.hearthstonechallenger.repository.DeckRepository;
@@ -52,7 +53,7 @@ public class DeckService {
 			throw new GenericException("Error in deck save.");
 		}
 	}
-	
+
 	public List<DeckDTO> retrieveDecks(SearchCriteria searchCriteria) {
 		Specification<Deck> cardSpecifications = ObjectSpecification.dynamicSearch(searchCriteria);
 		List<DeckDTO> deckDto = new ArrayList<>();
@@ -60,15 +61,18 @@ public class DeckService {
 		
 		decks.stream().forEach(deck -> {
 			DeckDTO dto = new DeckDTO();
-			List<CardDTO> cardList = dto.getCards();
+			List<CardDTO> cardList = new ArrayList<>();
 			
 			BeanUtils.copyProperties(deck, dto);
 			
-			for (Card cards : deck.getCards()) {
+			for (Card card : deck.getCards()) {
 				CardDTO cardDto = new CardDTO();
 				
-				BeanUtils.copyProperties(cards, cardDto);
-
+				BeanUtils.copyProperties(card, cardDto);
+				
+				cardDto.setVocation(VocationsEnum.getById(card.getIdClass()));
+				cardDto.setNature(NaturesEnum.getById(card.getIdType()));
+		
 				cardList.add(cardDto);
 			}
 			
@@ -80,7 +84,7 @@ public class DeckService {
 		
 		return deckDto;
 	}
-	
+
 	private void copyCards(DeckDTO dto, Deck deck) throws BusinessException {
 		List<Card> cards = new ArrayList<>();
 		List<CardDTO> dtoCards = dto.getCards();
@@ -118,6 +122,5 @@ public class DeckService {
 					"You cannot add more than two of the same cards to the same deck. Please remove a card with the name "
 							+ cardName);
 	}
-	
-	
+
 }
