@@ -8,6 +8,7 @@ import javax.persistence.criteria.Predicate;
 
 import org.springframework.data.jpa.domain.Specification;
 
+import com.example.hearthstonechallenger.enums.NaturesEnum;
 import com.example.hearthstonechallenger.enums.VocationsEnum;
 
 public final class ObjectSpecification {
@@ -31,8 +32,10 @@ public final class ObjectSpecification {
 			if(vocation.isPresent())
 				predicates.add(builder.equal(root.get("idClass"), VocationsEnum.getByName(vocation.get())));
 			
+			if(nature.isPresent())
+				predicates.add(builder.equal(root.get("idType"), NaturesEnum.getByName(nature.get())));
+			
 			return builder.and(predicates.toArray(new Predicate[0]));
 		};
 	}
-	
 }
