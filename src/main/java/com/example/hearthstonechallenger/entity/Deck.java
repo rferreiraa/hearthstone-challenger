@@ -1,6 +1,6 @@
 package com.example.hearthstonechallenger.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +34,7 @@ public class Deck {
 	  name = "deck_cards", schema = "hearthstone",
 	  joinColumns = @JoinColumn(name = "id_deck"), 
 	  inverseJoinColumns = @JoinColumn(name = "id_card"))
-	private Set<Card> cards;
+	private List<Card> cards;
 
 	@Column(name = "id_class")
 	private Integer idClass;

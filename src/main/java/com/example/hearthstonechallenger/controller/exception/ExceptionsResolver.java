@@ -26,11 +26,11 @@ public class ExceptionsResolver {
 	}
 	
 	@ExceptionHandler(BusinessException.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorResponse> handleBusinessException(BusinessException ex,
 			WebRequest request) {
-		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
-				"An internal error occurred, please try again later.");
+		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
+				ex.getMessage());
 
 		return ResponseEntity.unprocessableEntity().body(errorResponse);
 	}
@@ -46,4 +46,18 @@ public class ExceptionsResolver {
 
 		return ResponseEntity.unprocessableEntity().body(errorResponse);
 	}
+	
+	@ExceptionHandler(GenericException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public ResponseEntity<ErrorResponse> handleGenericException(GenericException ex,
+			WebRequest request) {
+		
+		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+				"An internal error has ocurred. Try again later.");
+
+		return ResponseEntity.unprocessableEntity().body(errorResponse);
+	}
+	
+	
+
 }

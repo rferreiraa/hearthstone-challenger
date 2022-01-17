@@ -1,6 +1,6 @@
 package com.example.hearthstonechallenger.controller.dto;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -9,8 +9,10 @@ import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class DeckDTO {
 	
@@ -21,8 +23,8 @@ public class DeckDTO {
 	@Size(min = 1, max = 100, message = "Name must be between 1 and 100 characters")
 	private String name;
 	
-	@Size(max=30, message="Decks can only have 30 cards")
-	private Set<CardDTO> cards;
+	@Size(max=30, message="Decks can only have max 30 cards")
+	private List<CardDTO> cards;
 	
 	@Pattern(regexp = "MAGE|PALADIN|HUNTER|DRUID|ANY", message = "Vocation must match to 'MAGE|PALADIN|HUNTER|DRUID|ANY'")
 	private String vocation;

@@ -14,10 +14,12 @@ import com.example.hearthstonechallenger.utils.NotNullIfIsCreature;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @NotNullIfIsCreature(
 	    fieldName = "nature",
 	    fieldValue = "CREATURE",

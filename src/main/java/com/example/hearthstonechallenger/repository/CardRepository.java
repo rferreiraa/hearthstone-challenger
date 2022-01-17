@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.hearthstonechallenger.entity.Card;
 
 @Repository
-public interface CardRepository extends CrudRepository<Card,  Long> {
+public interface CardRepository extends CrudRepository<Card, Long>, BaseRepository<Card> {
 
 }
